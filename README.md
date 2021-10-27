@@ -14,8 +14,8 @@ pip install -r requirements.txt
 2. install dependencies
 3. run
 ```flask run``` open browser from the provided link ```http://127.0.0.1:5000/```
-4. In the browser, to listen the local time, just push the play button ![Screenshot](/Users/spyretta/Projects/flask_api/photos/just_press_say_time.png) 
-5. In the browser, to listen a specific time you wish, press the white field and select the time  and timezone by using the selectors.![Screenshot](/Users/spyretta/Projects/flask_api/photos/pick_time.png)
+4. In the browser, to listen the local time, just push the play button ![Screenshot](photos/just_press_say_time.png) 
+5. In the browser, to listen a specific time you wish, press the white field and select the time  and timezone by using the selectors.![Screenshot](photos/pick_time.png)
 
 ### Recordings
 For GDPR reasons we will not share the recordings of our voice talent, however we will share full instructions on the process of acquiring the recordings:
