@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    </head>
+
+    <!-- <body class="bg-info"> -->
+    <body class="bg-danger">
+    <!-- <body class="bg-warning"> -->
+        <div class="page-container">
+            <div class="page-content d-flex" id="content">
+                <div class="container-fluid" style="margin-top: 20vh;">
+                    <div class="row justify-content-center">
+                        <div class="jumbotron col-6 col-sm-6">
+                            <h1 class="display-3">Clock speaking application!</h1>
+                            <p class="lead">This is a simple user interface where you (the user) can select any time (in 12-hour format).</p>
+                            <hr class="my-4">
+                            <p>It will trigger a backend service on Python's side, which will say the time.</p>
+                          </div>
+                    </div>
+                    <div class="row justify-content-center">
+                    <!-- <div class="row justify-content-center" style="margin-top: 40%;"> -->
+                        <div class="col-6 col-sm-6">
+                            <div class="card mb-3">
+                                <div class="card-header text-center"><h3>Please input what time to speak!</h3></div>
+                                <div class="card-body table">
+
+                                    <div class="start_date input-group mb-4">
+                                        <input id='datetimepicker1' class="form-control" type="text"/>
+                                        <div class="input-group-append">
+                                          <span class="fa fa-clock-o input-group-text" aria-hidden="true "></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-sm-offset-3 col-sm-6">
+                                            <div class="input-group" id="submitDiv">
+                                                <button id="submit-btn" class="btn btn-success"><i class="fa fa-play" aria-hidden="true"></i> Say the time!</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script>
+    $( document ).ready(function() {
+        $.extend(true, $.fn.datetimepicker.defaults, {
+            icons: {
+                time: 'far fa-clock',
+                date: 'far fa-calendar',
+                up: 'fa fa-arrow-up',
+                down: 'fa fa-arrow-down',
+                previous: 'fa fa-chevron-left',
+                next: 'fa fa-chevron-right',
+                today: 'fa fa-calendar-check',
+                clear: 'far fa-trash-alt',
+                close: 'far fa-times-circle'
+            }
+        });
+
+        $('#datetimepicker1').datetimepicker(
+            {
+            format: 'hh:mm A'
+            }
+        );
+
+        $('#submit-btn').click(function(e) {
+            let obtainedTime = $("#datetimepicker1").val();
+            if (obtainedTime !== "" && obtainedTime.length > 0){
+                console.log("SENDING 1 " + obtainedTime);
+                $.ajax({
+                    url: "http://127.0.0.1:5000/speak_the_time?no_input=false&obtained_time=" + obtainedTime,
+                    type: 'GET',
+                    success: function(audio_data) {
+                        // console.log(audio_data);
+                        let snd = new Audio("data:audio/wav;base64, " + audio_data);
+                        snd.play();
+                        $("#datetimepicker1").val(null);
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                    url: "http://127.0.0.1:5000/speak_the_time?no_input=true&obtained_time=" + obtainedTime,
+                    type: 'GET',
+                    success: function(audio_data) {
+                        // console.log(audio_data);
+                        let snd = new Audio("data:audio/wav;base64, " + audio_data);
+                        snd.play();
+                        $("#datetimepicker1").val(null);
+                    }
+                });
+            }
+        });
+    });
+    </script>
+</html>
