@@ -56,7 +56,7 @@ We followed the following process
    - Tracks (folder with the splitted tracks)
       - Numbers (numbers that are going to be used to pronounce the hours and the minutes)
       - Sentences (special times cases)
-      - Glue_words (it’s, past, quarter, o'clock etc that glue the time and give the final format of the recording of edge and bormal time cases.)
+      - Glue_words (it’s, past, quarter, o'clock etc that glue the time and give the final format of the recording of edge and normal time cases.)
 
 
 ##### \> Naming formatting of WAV files
