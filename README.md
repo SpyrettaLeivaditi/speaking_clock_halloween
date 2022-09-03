@@ -78,7 +78,7 @@ We followed the following process
 
 ### **Contact**
 - Judith Baumann (j.baumann.1@student.rug.nl ) 
-- Spyretta Leivaditi (s.leivaditi@student.rug.nl )
+- Spyretta Leivaditi (s.leivaditi@student.rug.nl, spyretta.leiv@gmail.com)
 - Kirsten Wildenburg (k.wildenburg@student.rug.nl )
 
 ### **License**
